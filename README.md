@@ -1,5 +1,5 @@
 # react-navigation-guard
-[![npm](https://img.shields.io/badge/npm-v1.0.0-blue.svg)]()
+[![npm](https://img.shields.io/badge/npm-v1.0.0-blue.svg)](https://www.npmjs.com/package/react-navigation-guard)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ninanung/react-navigation-guard/blob/master/LICENSE)
 
 ## Why React need navigation guard?  
@@ -16,24 +16,72 @@ npm install --save react-navigation-guard
 ```  
 
 ## Before using  
-This module is React Component
+react-navigation-guard is a React Component and wrap the `Route` that imported from `react-router-dom`. So, you will need several `react-router-dom` module's object, like `Switch` and `BrowserRouter`. I will show you the example in the "how to use" part.  
 
 ## How to use  
-First, you need to `import`.
+1st, you need to `import` everything you need.
 ```javascript
 // using ES6 modules
 import NavigationGuard from 'react-navigation-guard';
-// using CommonJS modules. I don't know, maybe this form of importing doesn't need for React.
-const NavigationGuard = require('react-navigation-guard');
+// and other things
+import React, { Component } from 'react';
+import { BrowserRouter, Switch } from 'react-router-dom';
+```  
 
-const someString = "someStringThatIWantToCheck";
-const checkResult = someFunction(someString);
-if(checkResult) {
-    doingSomething();
-} else {
-    doingOtherthing();
+2nd, make `Router` component. Point is, you have to pass the props `exaxt`, `component` and `path`. If you have used `react-router-dom` module, you will know what these props do.  
+__exact__ :  You can choose True or False. True will set `exact` to `Route` and false will not.  
+__component__ : It is easy, the component that you want to show.  
+__path__ : You can set a path for rendering component. It is kind of address for eash page.  
+```javascript
+class Router extends Component {
+  render() {
+    return (
+      <Switch>
+        <NavigationGuard exact={true} component={Home} path='/' />
+        <NavigationGuard exact={true} component={Test} path='/test' />
+      </Switch>
+    )
+  }
 }
 ```  
+
+3rd, set the root component.
+```javascript
+class App extends Component {
+  render() {
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <Router/>
+        </BrowserRouter>
+      </div>
+    );
+  }
+}
+
+export default App;
+```  
+
+4th, make few component for test.
+```javascript
+class Home extends Component {
+  render() {
+    return (
+      <h1>home</h1>
+    )
+  }
+}
+
+class Test extends Component {
+  render() {
+    return (
+      <h1>test</h1>
+    )
+  }
+}
+```  
+
+Last, 
 
 ## License  
 [MIT](https://github.com/ninanung/react-navigation-guard/blob/master/LICENSE)
