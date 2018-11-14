@@ -1,0 +1,30 @@
+{
+  "name": "react-navigation-guard",
+  "version": "1.0.0",
+  "description": "navigation guard component for React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ninanung/react-navigation-guard.git"
+  },
+  "keywords": [
+    "react",
+    "router",
+    "navigation-guard",
+    "simple"
+  ],
+  "author": "seungje.jun <ninanung0503@gmail.com> (https://github.com/ninanung)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ninanung/react-navigation-guard/issues"
+  },
+  "homepage": "https://github.com/ninanung/react-navigation-guard#readme",
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-router-dom": "^4.3.1"
+  }
+}
