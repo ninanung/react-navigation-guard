@@ -1,5 +1,5 @@
 # react-navigation-guard
-[![npm](https://img.shields.io/badge/npm-v1.0.0-blue.svg)](https://www.npmjs.com/package/react-navigation-guard)
+[![npm](https://img.shields.io/badge/npm-v1.0.1-blue.svg)](https://www.npmjs.com/package/react-navigation-guard)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ninanung/react-navigation-guard/blob/master/LICENSE)
 
 ## Why React need navigation guard?  
@@ -11,15 +11,15 @@ So! I made a simple navigation guard module for React. It is really simple, but 
 ## How to install  
 Install with npm.
 ```
-cd your/some/npm/project
+cd to/your/npm/project
 npm install --save react-navigation-guard
 ```  
 
 ## Before using  
 react-navigation-guard is a React Component and wrap the `Route` that imported from `react-router-dom`. So, you will need several `react-router-dom` module's object, like `Switch` and `BrowserRouter`. I will show you the example in the "how to use" part.  
 
-## How to use  
-1st, you need to `import` everything you need.
+## How to use(example code)  
+__1st__, you need to `import` everything you need.
 ```javascript
 // using ES6 modules
 import NavigationGuard from 'react-navigation-guard';
@@ -28,10 +28,12 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 ```  
 
-2nd, make `Router` component. Point is, you have to pass the props `exaxt`, `component` and `path`. If you have used `react-router-dom` module, you will know what these props do.  
+__2nd__, make `Router` component. Point is, you have to pass the props `exaxt`, `component` and `path`. If you have used `react-router-dom` module, you will know what these props do.  
+  
 __exact__ :  You can choose True or False. True will set `exact` to `Route` and false will not.  
 __component__ : It is easy, the component that you want to show.  
 __path__ : You can set a path for rendering component. It is kind of address for eash page.  
+  
 ```javascript
 class Router extends Component {
   render() {
@@ -45,7 +47,7 @@ class Router extends Component {
 }
 ```  
 
-3rd, set the root component.
+__3rd__, set the root component.
 ```javascript
 class App extends Component {
   render() {
@@ -62,7 +64,7 @@ class App extends Component {
 export default App;
 ```  
 
-4th, make few component for test.
+__4th__, make few simple component for test.
 ```javascript
 class Home extends Component {
   render() {
@@ -81,7 +83,7 @@ class Test extends Component {
 }
 ```  
 
-Last, 
+__Last__, 
 
 ## License  
 [MIT](https://github.com/ninanung/react-navigation-guard/blob/master/LICENSE)
