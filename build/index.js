@@ -1822,8 +1822,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(21);
 
-var _reactRouterDom2 = _interopRequireDefault(_reactRouterDom);
-
 var _propTypes = __webpack_require__(1);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
@@ -1877,7 +1875,7 @@ var NavigationGuard = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                exact ? _react2.default.createElement(_reactRouterDom2.default, { exact: true, path: path, component: component }) : _react2.default.createElement(_reactRouterDom2.default, { path: path, component: component })
+                exact ? _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: path, component: component }) : _react2.default.createElement(_reactRouterDom.Route, { path: path, component: component })
             );
         }
     }]);
