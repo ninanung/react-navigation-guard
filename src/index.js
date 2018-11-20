@@ -4,7 +4,13 @@ import PropTypes from 'prop-types';
 
 class NavigationGuard extends React.Component {
     componentWillMount() {
-        const {returnBool, ifTrue, ifFalse, computedMatch} = this.props;
+        const {exact, component, returnBool, ifTrue, ifFalse, computedMatch} = this.props;
+        const propsPath = this.props.path;
+        //check all the props
+        if(!exact || !component || !returnBool || !ifTrue || !ifFalse || !propsPath) {
+            throw 'please, check all the props are passed for react-navigation-guard';
+        }
+
         const {path, url, params} = computedMatch;
         const returnValue = returnBool(path, url, params);
         if(returnValue === true) {
@@ -12,7 +18,7 @@ class NavigationGuard extends React.Component {
         } else if(returnValue === false) {
             ifFalse(path, url, params);
         } else {
-            throw 'return value must be True or False.';
+            throw 'returnBool\'s return value must be True or False.';
         }
     }
 

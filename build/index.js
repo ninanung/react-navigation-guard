@@ -1847,10 +1847,19 @@ var NavigationGuard = function (_React$Component) {
         key: 'componentWillMount',
         value: function componentWillMount() {
             var _props = this.props,
+                exact = _props.exact,
+                component = _props.component,
                 returnBool = _props.returnBool,
                 ifTrue = _props.ifTrue,
                 ifFalse = _props.ifFalse,
                 computedMatch = _props.computedMatch;
+
+            var propsPath = this.props.path;
+            //check all the props
+            if (!exact || !component || !returnBool || !ifTrue || !ifFalse || !propsPath) {
+                throw 'please, check all the props are passed for react-navigation-guard';
+            }
+
             var path = computedMatch.path,
                 url = computedMatch.url,
                 params = computedMatch.params;
@@ -1861,7 +1870,7 @@ var NavigationGuard = function (_React$Component) {
             } else if (returnValue === false) {
                 ifFalse(path, url, params);
             } else {
-                throw 'return value must be True or False.';
+                throw 'returnBool\'s return value must be True or False.';
             }
         }
     }, {

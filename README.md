@@ -1,5 +1,5 @@
 # react-navigation-guard
-[![npm](https://img.shields.io/badge/npm-v1.0.1-blue.svg)](https://www.npmjs.com/package/react-navigation-guard)
+[![npm](https://img.shields.io/badge/npm-v1.0.2-blue.svg)](https://www.npmjs.com/package/react-navigation-guard)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ninanung/react-navigation-guard/blob/master/LICENSE)
 
 ## Why React need navigation guard?  
@@ -20,7 +20,9 @@ react-navigation-guard is a React Component and wrap the `Route` that imported f
 
 ## How to use(with example code)  
 I will let you know how to set this module and show you the sample code of `src/App.js` file of React project.  
-  
+Also you can see this sample code in [react-navigation-guard-sample](https://github.com/ninanung/react-navigation-guard-sample) repo.  
+
+------------------------------------------
 ### First  
 You need to `import` everything you need.
 ```javascript
@@ -30,6 +32,7 @@ import NavigationGuard from 'react-navigation-guard';
 import React, { Component } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 ```  
+------------------------------------------
 ### Second  
 Make `Router` component. Point is, you have to pass these 6 props, `exaxt`, `component`, `path`, `returnBool`, `ifTrue` and `ifFalse`. First thing first, i will code 3 props at start. If you have used `react-router-dom` module, you will know what these props do.  
   
@@ -91,6 +94,7 @@ class Router extends Component {
   }
 }
 ```  
+------------------------------------------
 ### Third  
 Set the root component.
 ```javascript
@@ -108,6 +112,7 @@ class App extends Component {
 
 export default App;
 ```  
+------------------------------------------
 ### Fourth  
 Make few simple component for test. I already use these component for __second__ part.
 ```javascript
@@ -127,6 +132,7 @@ class Test extends Component {
   }
 }
 ```  
+------------------------------------------
 ### Full code of example  
 ```javascript
 import React, { Component } from 'react';
