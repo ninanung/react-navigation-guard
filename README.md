@@ -1,5 +1,5 @@
 # react-navigation-guard
-[![npm](https://img.shields.io/badge/npm-v1.0.2-blue.svg)](https://www.npmjs.com/package/react-navigation-guard)
+[![npm](https://img.shields.io/badge/npm-v1.0.3-blue.svg)](https://www.npmjs.com/package/react-navigation-guard)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ninanung/react-navigation-guard/blob/master/LICENSE)
 
 ## Why React need navigation guard?  
@@ -34,12 +34,13 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 ```  
 ------------------------------------------
 ### Second  
-Make `Router` component. Point is, you have to pass these 6 props, `exaxt`, `component`, `path`, `returnBool`, `ifTrue` and `ifFalse`. First thing first, i will code 3 props at start. If you have used `react-router-dom` module, you will know what these props do.  
+Make `Router` component. Point is, you have to pass these 6 props, `exaxt`, `component`, `path`, `returnBool`, `ifTrue` and `ifFalse`, and it is not optional. First thing first, i will use 3 basic props. If you have used `react-router-dom` module, you will know what these props do.  
   
 __exact__ : __Bool__. You can choose True or False. True will set `exact` option and false will not.  
 __component__ : __Function__. Yes, react component is function. This is easy part, `import` or make component and pass it.  
 __path__ : __String__. You can set a path for pages. It is kind of address to each component.  
   
+Example Code
 ```javascript
 class Router extends Component {
   render() {
@@ -52,35 +53,38 @@ class Router extends Component {
   }
 }
 ```  
-Next is other 3 props. These are `react-navigation-guard` module's own props and you have to code your own function for these.  
+Next is other 3 props. These are `react-navigation-guard`'s own props and you have to make your own functions for these.  
   
-__There's something you need to know__  
-- You must pass these props. If you don't, module will throw error.
-- You must code three parameters when you make functions. I will show you what it is.  
-- Parameters are `parh`, `url` and `params`. `path` is component's path that you set. `url` is address of page that user redirect. `params` is url parameters of the page.  
+__NOTICE__  
+- You must write two or three parameters when you make functions.  
   
-__returnBool__ : __Function(path, url, params)__. This function must return bool type. You can use this like example code below.  
-__ifTrue__ : __Function(path, url, params)__. This function ran when `returnBool` function's return value is true.  
-__ifFalse__ : __Function(path, url, params)__. This function ran when `returnBool` function's return value is false.  
-  
+__returnBool__ : __Function(path, params)__. This function must return bool type. You can use this like example code below.  
+__ifTrue__ : __Function(path, params, stopRender)__. This function ran when `returnBool` function's return value is true.  
+__ifFalse__ : __Function(path, params, stopRender)__. This function ran when `returnBool` function's return value is false.  
+> path : `string`, __NOT optional__. path of component you want to move.  
+> params : `object`, __NOT optional__. path parameters of URL.  
+> blockRender : `function`, __NOT optional__. if you want to block rendering the component, use this parameter.  
+
+Example Code
 ```javascript
 class Router extends Component {
-  returnBool = (path, url, params) => {
-    console.log(path);
-    console.log(url);
-    console.log(params);
-    if(url === 'some url') {
+  returnBool = (path, params) => {
+    console.log(path); // will show you like this "/sample/path"
+    console.log(params); // will show you like this {some: "something", some2: "something2"}
+    if(path === '/path/example') {
       return true;
     } else {
       return false;
     }
   }
 
-  ifTrue = (path, url, params) => {
+  ifTrue = (path, params, blockRender) => {
+    // will render the component you set after this function end.
     console.log('do something when true');
   }
 
-  ifFalse = (path, url, params) => {
+  ifFalse = (path, params, blockRender) => {
+    blockRender(); // will not render the component you set
     console.log('do something when false');
   }
 
@@ -96,7 +100,7 @@ class Router extends Component {
 ```  
 ------------------------------------------
 ### Third  
-Set the root component.
+Set the `App` component.
 ```javascript
 class App extends Component {
   render() {
@@ -156,22 +160,23 @@ class Test extends Component {
 }
 
 class Router extends Component {
-  returnBool = (path, url, params) => {
-    console.log(path);
-    console.log(url);
-    console.log(params);
-    if(url === 'some url') {
+  returnBool = (path, params) => {
+    console.log(path); // will show you like this "/sample/path"
+    console.log(params); // will show you like this {some: "something", some2: "something2"}
+    if(path === '/path/example') {
       return true;
     } else {
       return false;
     }
   }
 
-  ifTrue = (path, url, params) => {
+  ifTrue = (path, params, blockRender) => {
+    // will render the component you set after this function end.
     console.log('do something when true');
   }
 
-  ifFalse = (path, url, params) => {
+  ifFalse = (path, params, blockRender) => {
+    blockRender(); // will not render the component you set
     console.log('do something when false');
   }
 
