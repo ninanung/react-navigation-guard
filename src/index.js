@@ -27,12 +27,12 @@ class NavigationGuard extends React.Component {
         if(ifFalse.length !== 3) {
             throw '"ifFalse" function parameters are not fully passed for react-navigation-guard';
         }
-        const {path, url, params} = computedMatch;
-        const returnValue = returnBool(path, params);
+        const {url, params} = computedMatch;
+        const returnValue = returnBool(url, params);
         if(returnValue === true) {
-            ifTrue(path, params, this.blockRender);
+            ifTrue(url, params, this.blockRender);
         } else if(returnValue === false) {
-            ifFalse(path, params, this.blockRender);
+            ifFalse(url, params, this.blockRender);
         } else {
             throw 'returnBool\'s return value must be True or False for react-navigation-guard';
         }

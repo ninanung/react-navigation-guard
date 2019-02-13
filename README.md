@@ -1,5 +1,5 @@
 # react-navigation-guard
-[![npm](https://img.shields.io/badge/npm-v1.0.4-blue.svg)](https://www.npmjs.com/package/react-navigation-guard)
+[![npm](https://img.shields.io/badge/npm-v1.0.5-blue.svg)](https://www.npmjs.com/package/react-navigation-guard)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ninanung/react-navigation-guard/blob/master/LICENSE)
 
 ## Why React need navigation guard?  
@@ -58,32 +58,32 @@ Next is other 3 props. These are `react-navigation-guard`'s own props and you ha
 __NOTICE__  
 - You must write two or three parameters when you make functions.  
   
-__returnBool__ : __Function(path, params)__. This function must return bool type. You can use this like example code below.  
-__ifTrue__ : __Function(path, params, stopRender)__. This function ran when `returnBool` function's return value is true.  
-__ifFalse__ : __Function(path, params, stopRender)__. This function ran when `returnBool` function's return value is false.  
-> path : `string`, __NOT optional__. path of component you want to move.  
+__returnBool__ : __Function(url, params)__. This function must return bool type. You can use this like example code below.  
+__ifTrue__ : __Function(url, params, stopRender)__. This function ran when `returnBool` function's return value is true.  
+__ifFalse__ : __Function(url, params, stopRender)__. This function ran when `returnBool` function's return value is false.  
+> url : `string`, __NOT optional__. url of component you want to move.  
 > params : `object`, __NOT optional__. path parameters of URL.  
 > blockRender : `function`, __NOT optional__. if you want to block rendering the component, use this parameter.  
 
 Example Code
 ```javascript
 class Router extends Component {
-  returnBool = (path, params) => {
-    console.log(path); // will show you like this "/sample/path"
+  returnBool = (url, params) => {
+    console.log(url); // will show you like this "/sample/url"
     console.log(params); // will show you like this {some: "something", some2: "something2"}
-    if(path === '/path/example') {
+    if(url === '/url/example') {
       return true;
     } else {
       return false;
     }
   }
 
-  ifTrue = (path, params, blockRender) => {
+  ifTrue = (url, params, blockRender) => {
     // will render the component you set after this function end.
     console.log('do something when true');
   }
 
-  ifFalse = (path, params, blockRender) => {
+  ifFalse = (url, params, blockRender) => {
     blockRender(); // will not render the component you set
     console.log('do something when false');
   }
@@ -174,22 +174,22 @@ class Test extends Component {
 }
 
 class Router extends Component {
-  returnBool = (path, params) => {
-    console.log(path); // will show you like this "/sample/path"
+  returnBool = (url, params) => {
+    console.log(url); // will show you like this "/sample/url"
     console.log(params); // will show you like this {some: "something", some2: "something2"}
-    if(path === '/path/example') {
+    if(url === '/url/example') {
       return true;
     } else {
       return false;
     }
   }
 
-  ifTrue = (path, params, blockRender) => {
+  ifTrue = (url, params, blockRender) => {
     // will render the component you set after this function end.
     console.log('do something when true');
   }
 
-  ifFalse = (path, params, blockRender) => {
+  ifFalse = (url, params, blockRender) => {
     blockRender(); // will not render the component you set
     console.log('do something when false');
   }
