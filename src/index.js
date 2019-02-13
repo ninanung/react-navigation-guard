@@ -6,9 +6,9 @@ class NavigationGuard extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            stopRender: false,
+            blockRender: false,
         }
-        this.stopRender.bind();
+        this.blockRender = this.blockRender.bind(this);
     }
 
     componentWillMount() {
@@ -16,37 +16,37 @@ class NavigationGuard extends React.Component {
         const propsPath = this.props.path;
         //check all the props
         if(!exact || !component || !returnBool || !ifTrue || !ifFalse || !propsPath) {
-            throw 'please, check all the props are passed for react-navigation-guard';
+            throw 'check all the props are passed for react-navigation-guard';
         }
         if(returnBool.length !== 2) {
-            throw '"returnBool" function\'s parameters are not fully passed';
+            throw '"returnBool" function parameters are not fully passed for react-navigation-guard';
         }
         if(ifTrue.length !== 3) {
-            throw '"ifTrue" function\'s parameters are not fully passed';
+            throw '"ifTrue" function parameters are not fully passed for react-navigation-guard';
         }
         if(ifFalse.length !== 3) {
-            throw '"ifFalse" function\'s parameters are not fully passed';
+            throw '"ifFalse" function parameters are not fully passed for react-navigation-guard';
         }
         const {path, url, params} = computedMatch;
         const returnValue = returnBool(path, params);
         if(returnValue === true) {
-            ifTrue(path, params, this.stopRender);
+            ifTrue(path, params, this.blockRender);
         } else if(returnValue === false) {
-            ifFalse(path, params, this.stopRender);
+            ifFalse(path, params, this.blockRender);
         } else {
-            throw 'returnBool\'s return value must be True or False.';
+            throw 'returnBool\'s return value must be True or False for react-navigation-guard';
         }
     }
 
-    stopRender() {
+    blockRender() {
         this.setState({
-            stopRender: true,
+            blockRender: true,
         })
     }
 
     render() {
         const { path, component, exact } = this.props;
-        if(this.state.stopRender) {
+        if(this.state.blockRender) {
             return (<div></div>);
         }
         return (

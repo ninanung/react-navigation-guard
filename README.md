@@ -1,5 +1,5 @@
 # react-navigation-guard
-[![npm](https://img.shields.io/badge/npm-v1.0.3-blue.svg)](https://www.npmjs.com/package/react-navigation-guard)
+[![npm](https://img.shields.io/badge/npm-v1.0.4-blue.svg)](https://www.npmjs.com/package/react-navigation-guard)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ninanung/react-navigation-guard/blob/master/LICENSE)
 
 ## Why React need navigation guard?  
@@ -98,6 +98,20 @@ class Router extends Component {
   }
 }
 ```  
+One more thing, you don't need to use `NavigationGuard` if some component is not needed to check. You can just use `Route`.  
+  
+Example Code
+```javascript
+  render() {
+    return (
+      <Switch>
+        <NavigationGuard exact={true} component={Home} path='/' returnBool={this.returnBool} ifTrue={this.ifTrue} ifFalse={this.ifFalse} />
+        <NavigationGuard exact={true} component={Test} path='/test/:test' returnBool={this.returnBool} ifTrue={this.ifTrue} ifFalse={this.ifFalse} />
+        <Route path='/dont/need/to/check' component={DontCheck} />
+      </Switch>
+    )
+  }
+```
 ------------------------------------------
 ### Third  
 Set the `App` component.
