@@ -43,6 +43,6 @@
     "webpack-cli": "^3.3.5"
   },
   "dependencies": {
-    "react-scripts": "^3.0.1"
+    "react-scripts": "^5.0.1"
   }
 }
